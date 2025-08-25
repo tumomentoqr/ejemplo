@@ -6,7 +6,13 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>4 Meses de Amor</title>
+    <title>
+      Regalos Digitales Personalizados | Aniversarios y Fechas Especiales
+    </title>
+    <meta
+      name="description"
+      content="Sorprende a tu ser querido con una página web personalizada para aniversarios, cumpleaños o fechas especiales. ¡Regalos únicos y creativos!"
+    />
     <style>
       body,
       html {
@@ -20,7 +26,7 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
         overflow: hidden;
-        background: #00000000;
+        background: linear-gradient(135deg, #ffe8e8 0%, #ffc6c6 100%);
         position: fixed;
         -webkit-tap-highlight-color: transparent;
       }
@@ -81,7 +87,7 @@
       .envelope {
         position: relative;
         width: 300px;
-        height: 270px;
+        height: 380px;
         background: #ff1a1a;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         transform-style: preserve-3d;
@@ -217,13 +223,13 @@
         );
       }
 
-      /* Carta rectangular */
+      /* Carta rectangular - Aumentada en altura */
       .letter {
         position: absolute;
         width: 90%;
         max-width: 350px;
-        height: 65vh;
-        max-height: 550px;
+        height: 75vh; /* Aumentada para más espacio */
+        max-height: 600px;
         background: rgba(255, 255, 255, 0.95);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         transform: translateY(80%);
@@ -231,7 +237,7 @@
         transition: all 1s ease-in-out;
         text-align: center;
         border-radius: 8px;
-        padding: 20px;
+        padding: 25px;
         overflow-y: auto;
         z-index: 5;
         backdrop-filter: blur(5px);
@@ -255,11 +261,20 @@
         text-align: center;
         color: #ff1a1a;
         font-size: 22px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
       }
 
       .letter-content p {
         margin-bottom: 15px;
+      }
+
+      .letter-content ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+
+      .letter-content li {
+        margin-bottom: 8px;
       }
 
       .letter-hearts {
@@ -276,11 +291,11 @@
         position: absolute;
         font-size: 18px;
         color: #ff6b88;
-        animation: float 4s ease-in infinite;
+        animation: floatHeart 4s ease-in infinite;
         opacity: 0;
       }
 
-      @keyframes float {
+      @keyframes floatHeart {
         0% {
           transform: translateY(0) rotate(0deg);
           opacity: 1;
@@ -334,11 +349,60 @@
         right: 10px;
         transform: scale(-1);
       }
+
+      /* Nuevos estilos para la versión comercial */
+      .cta-button {
+        background: linear-gradient(45deg, #ff1a1a, #ff6b6b);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 20px 0;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 0, 0, 0.4);
+      }
+
+      .instagram-handle {
+        position: absolute;
+        bottom: 15px;
+        text-align: center;
+        width: 100%;
+        color: #555;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .instagram-handle a {
+        color: #fd0033;
+        text-decoration: none;
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          #ff6b6b,
+          transparent
+        );
+        margin: 20px 0;
+      }
     </style>
   </head>
   <body>
     <div class="background" id="background"></div>
-    <div class="months-text">4 MONTHS L & I ❤️</div>
+    <div class="months-text">¡REGALOS DIGITALES PERSONALIZADOS! ❤️</div>
 
     <div class="corner-decoration corner-1"></div>
     <div class="corner-decoration corner-2"></div>
@@ -348,65 +412,66 @@
     <div class="container">
       <div class="envelope" id="envelope">
         <div class="front">
-          <div class="message">
-            <p>Para la niña más bonita que existe</p>
-          </div>
           <div class="stamp">
             <div class="heart">❤️</div>
+          </div>
+          <div class="message">
+            <p>¡Toca para abrir!</p>
           </div>
         </div>
         <div class="back"></div>
       </div>
       <div class="letter" id="letter">
         <div class="letter-content">
-          <h2>4 Meses de Felicidad</h2>
+          <h2>¡Sorprende a Tu Ser Querido!</h2>
 
           <p>
-            4 meses llenos de felicidad y amor, gracias por ser o intentar sacar
-            tu mejor versión conmigo, por apoyarme y aguantarme. Te amo
-            muchísimo.
+            ¿Cansado de los regalos convencionales? ¡Sorprende a tu pareja,
+            familiar o amigo con una página web personalizada para celebrar
+            fechas especiales!
           </p>
+
           <p>
-            Me sobran palabras para decirte lo feliz que me haces, para
-            agradecerte todo aquello que haces por mí, por volverme a regalar
-            esa felicidad, este amor que no tenía hace mucho tiempo. Y como te
-            lo dije en su momento estoy viviendo experiencias únicas que no
-            sabía que existían o que simplemente las merecía.
+            <strong>✨ ¿Qué incluye? ✨</strong>
           </p>
+
+          <ul>
+            <li>Diseño único y personalizado con vuestras fotos</li>
+            <li>Mensajes especiales y dedicados</li>
+            <li>Animaciones interactivas como esta</li>
+            <li>Música de fondo (opcional)</li>
+            <li>Entrega en 24-48 horas</li>
+          </ul>
+
+          <div class="divider"></div>
+
           <p>
-            Gracias por siempre estar para mí, por recargarme en mis días malos,
-            por hacer que cada día me esfuerce para ser una mejor persona, por
-            motivarme en todas mis locuras, por ser tan empática conmigo, a
-            pesar de que estás acostumbrada a una vida diferente a la mía y que
-            ahora me es difícil seguirte el ritmo aquí sigues y es algo que
-            valoro mucho y créeme que me esfuerzo mucho para lograr darte todo
-            eso que te mereces.
+            <strong>🎉 Ocasiones perfectas:</strong>
           </p>
+
+          <ul>
+            <li>Aniversarios de pareja</li>
+            <li>Cumpleaños</li>
+            <li>Día de la madre/padre</li>
+            <li>San Valentín</li>
+            <li>Propuestas de matrimonio</li>
+            <li>¡Y cualquier fecha especial!</li>
+          </ul>
+
           <p>
-            Es una locura cómo haces desaparecer mis problemas o las cosas que
-            me estresan, eres mi escape, el sol en una tormenta y estoy seguro
-            que esto puede durar para siempre. Eres una novia, hija, nutrióloga
-            increíble y quiero que sepas que estoy muy orgulloso de ti mor,
-            aunque a veces se te cierre el mundo sabes que estaré para ti como
-            tú lo has estado para mí.
+            Un regalo moderno, creativo y que perdurará para siempre en la
+            memoria.
           </p>
-          <p>
-            Apenas 4 meses amor y sigo amándote como el día 1, bueno cada vez te
-            amo más jiji espero que sigamos compartiendo todo esto tan lindo que
-            día a día construimos. Te amo mucho lu.
+
+          <p style="text-align: center">
+            <strong
+              >¡No esperes más para sorprender a quien más quieres!</strong
+            >
           </p>
-          <p
-            style="
-              text-align: center;
-              font-size: 18px;
-              font-weight: bold;
-              margin-top: 20px;
-            "
-          >
-            Gracias por estos 4 meses maravillosos ❤️
-          </p>
-          <p style="text-align: right; font-style: italic; margin-top: 20px">
-            Con todo mi amor<br />
+
+          <p style="text-align: center; font-style: italic">
+            "El regalo perfecto para demostrar tu amor de una manera única y
+            creativa"
           </p>
         </div>
         <div class="letter-hearts" id="hearts"></div>
