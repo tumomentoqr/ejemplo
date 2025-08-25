@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>4 Meses de Amor</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif;
+        overflow: hidden;
+        background: #00000000;
+        position: fixed;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Fondo decorativo */
+      .background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .heart-bg {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 15s linear infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+        }
+      }
+
+      .months-text {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        color: #fd0033;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        opacity: 0.7;
+        z-index: -1;
+      }
+
+      .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+        gap: 15px;
+        z-index: 1;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Sobre de corazón */
+      .envelope {
+        position: relative;
+        width: 300px;
+        height: 270px;
+        background: #ff1a1a;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform-style: preserve-3d;
+        transform-origin: bottom;
+        transition: all 0.7s ease-in-out;
+        cursor: pointer;
+        clip-path: path(
+          'M150,35 C200,0 300,50 300,120 C300,200 150,270 150,270 C150,270 0,200 0,120 C0,50 100,0 150,35 Z'
+        );
+        z-index: 10;
+        margin-bottom: 20px;
+        touch-action: manipulation;
+      }
+
+      .envelope:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0) 50%
+        );
+        clip-path: path(
+          'M150,35 C200,0 300,50 300,120 C300,200 150,270 150,270 C150,270 0,200 0,120 C0,50 100,0 150,35 Z'
+        );
+      }
+
+      .envelope:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 20px;
+        background: #e60000;
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+        z-index: 2;
+      }
+
+      .envelope.open {
+        transform: rotateX(-180deg);
+        background: #e60000;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .front {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .message {
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        margin-top: 50px;
+        padding: 0 20px;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      .envelope.open .front .message {
+        opacity: 0;
+      }
+
+      .stamp {
+        position: absolute;
+        top: 25px;
+        right: 50px;
+        width: 50px;
+        height: 50px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        animation: pulse 2s infinite;
+        border-radius: 5px;
+        z-index: 3;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .heart {
+        font-size: 30px;
+        color: #ff4b4b;
+        animation: beat 1s infinite;
+      }
+
+      @keyframes beat {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #e60000;
+        backface-visibility: hidden;
+        transform: rotateX(180deg);
+        clip-path: path(
+          'M150,35 C200,0 300,50 300,120 C300,200 150,270 150,270 C150,270 0,200 0,120 C0,50 100,0 150,35 Z'
+        );
+      }
+
+      /* Carta rectangular */
+      .letter {
+        position: absolute;
+        width: 90%;
+        max-width: 350px;
+        height: 65vh;
+        max-height: 550px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(80%);
+        opacity: 0;
+        transition: all 1s ease-in-out;
+        text-align: center;
+        border-radius: 8px;
+        padding: 20px;
+        overflow-y: auto;
+        z-index: 5;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 182, 193, 0.3);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .letter.show {
+        transform: translateY(-30px);
+        opacity: 1;
+      }
+
+      .letter-content {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+        text-align: left;
+      }
+
+      .letter-content h2 {
+        text-align: center;
+        color: #ff1a1a;
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      .letter-content p {
+        margin-bottom: 15px;
+      }
+
+      .letter-hearts {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .floating-heart {
+        position: absolute;
+        font-size: 18px;
+        color: #ff6b88;
+        animation: float 4s ease-in infinite;
+        opacity: 0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Barra de desplazamiento */
+      .letter::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .letter::-webkit-scrollbar-thumb {
+        background: #ff8080;
+        border-radius: 2px;
+      }
+
+      .letter::-webkit-scrollbar-track {
+        background: rgba(255, 204, 204, 0.3);
+      }
+
+      /* Decoraciones adicionales */
+      .corner-decoration {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff6b88" opacity="0.2" d="M30,0 Q50,30 70,0 Q90,30 100,50 Q70,50 50,80 Q30,50 0,50 Q10,30 30,0 Z"/></svg>');
+        background-repeat: no-repeat;
+        z-index: -1;
+      }
+
+      .corner-1 {
+        top: 10px;
+        left: 10px;
+      }
+      .corner-2 {
+        top: 10px;
+        right: 10px;
+        transform: scaleX(-1);
+      }
+      .corner-3 {
+        bottom: 10px;
+        left: 10px;
+        transform: scaleY(-1);
+      }
+      .corner-4 {
+        bottom: 10px;
+        right: 10px;
+        transform: scale(-1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background" id="background"></div>
+    <div class="months-text">4 MONTHS L & I ❤️</div>
+
+    <div class="corner-decoration corner-1"></div>
+    <div class="corner-decoration corner-2"></div>
+    <div class="corner-decoration corner-3"></div>
+    <div class="corner-decoration corner-4"></div>
+
+    <div class="container">
+      <div class="envelope" id="envelope">
+        <div class="front">
+          <div class="message">
+            <p>Para la niña más bonita que existe</p>
+          </div>
+          <div class="stamp">
+            <div class="heart">❤️</div>
+          </div>
+        </div>
+        <div class="back"></div>
+      </div>
+      <div class="letter" id="letter">
+        <div class="letter-content">
+          <h2>4 Meses de Felicidad</h2>
+
+          <p>
+            4 meses llenos de felicidad y amor, gracias por ser o intentar sacar
+            tu mejor versión conmigo, por apoyarme y aguantarme. Te amo
+            muchísimo.
+          </p>
+          <p>
+            Me sobran palabras para decirte lo feliz que me haces, para
+            agradecerte todo aquello que haces por mí, por volverme a regalar
+            esa felicidad, este amor que no tenía hace mucho tiempo. Y como te
+            lo dije en su momento estoy viviendo experiencias únicas que no
+            sabía que existían o que simplemente las merecía.
+          </p>
+          <p>
+            Gracias por siempre estar para mí, por recargarme en mis días malos,
+            por hacer que cada día me esfuerce para ser una mejor persona, por
+            motivarme en todas mis locuras, por ser tan empática conmigo, a
+            pesar de que estás acostumbrada a una vida diferente a la mía y que
+            ahora me es difícil seguirte el ritmo aquí sigues y es algo que
+            valoro mucho y créeme que me esfuerzo mucho para lograr darte todo
+            eso que te mereces.
+          </p>
+          <p>
+            Es una locura cómo haces desaparecer mis problemas o las cosas que
+            me estresan, eres mi escape, el sol en una tormenta y estoy seguro
+            que esto puede durar para siempre. Eres una novia, hija, nutrióloga
+            increíble y quiero que sepas que estoy muy orgulloso de ti mor,
+            aunque a veces se te cierre el mundo sabes que estaré para ti como
+            tú lo has estado para mí.
+          </p>
+          <p>
+            Apenas 4 meses amor y sigo amándote como el día 1, bueno cada vez te
+            amo más jiji espero que sigamos compartiendo todo esto tan lindo que
+            día a día construimos. Te amo mucho lu.
+          </p>
+          <p
+            style="
+              text-align: center;
+              font-size: 18px;
+              font-weight: bold;
+              margin-top: 20px;
+            "
+          >
+            Gracias por estos 4 meses maravillosos ❤️
+          </p>
+          <p style="text-align: right; font-style: italic; margin-top: 20px">
+            Con todo mi amor<br />
+          </p>
+        </div>
+        <div class="letter-hearts" id="hearts"></div>
+      </div>
+    </div>
+
+    <script>
+      const envelope = document.getElementById('envelope');
+      const letter = document.getElementById('letter');
+      const heartsContainer = document.getElementById('hearts');
+      const background = document.getElementById('background');
+      let isOpen = false;
+
+      // Crear corazones de fondo
+      for (let i = 0; i < 12; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-bg';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = 20 + Math.random() * 30 + 'px';
+        heart.style.animationDuration = 10 + Math.random() * 15 + 's';
+        heart.style.animationDelay = Math.random() * 3 + 's';
+        background.appendChild(heart);
+      }
+
+      // Hacer el sobre responsive al toque
+      envelope.addEventListener('click', toggleEnvelope);
+      envelope.addEventListener(
+        'touchend',
+        function (e) {
+          e.preventDefault();
+          toggleEnvelope();
+        },
+        { passive: false }
+      );
+
+      function toggleEnvelope() {
+        if (!isOpen) {
+          envelope.classList.add('open');
+          setTimeout(() => {
+            letter.classList.add('show');
+            createFloatingHearts();
+          }, 700);
+          isOpen = true;
+        } else {
+          envelope.classList.remove('open');
+          letter.classList.remove('show');
+          isOpen = false;
+          heartsContainer.innerHTML = '';
+        }
+      }
+
+      function createFloatingHearts() {
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = 2 + Math.random() * 2 + 's';
+            heart.style.animationDelay = Math.random() * 1 + 's';
+            heart.style.fontSize = 15 + Math.random() * 10 + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 3000);
+          }, i * 150);
+        }
+      }
+    </script>
+  </body>
+</html>
